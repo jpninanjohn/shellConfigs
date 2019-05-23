@@ -55,7 +55,6 @@ plugins=(
 git
 autojump
 alias-tips
-z
 j
 zsh-syntax-highlighting
 zsh-autosuggestions
@@ -99,13 +98,12 @@ for file in ~/aliases/.*; do source $file; done
 
 #source <(kubectl completion zsh)
 source ~/.bashrc
-#source ~/.zprofile
 
-# source ./emoji-cli/emoji-cli.zsh
-
+# Source fzf 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# Check if postgres is started and strt if not.
-postgresStatus || startPostgres
+# Source lazy-connect
 [ -f ~/.lazy-connect/lazy-connect.sh ] && source ~/.lazy-connect/lazy-connect.sh
 
+# Source kube-context display 
+source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+PS1='$(kube_ps1)'$PS1
