@@ -104,6 +104,15 @@ source ~/.bashrc
 # Source lazy-connect
 [ -f ~/.lazy-connect/lazy-connect.sh ] && source ~/.lazy-connect/lazy-connect.sh
 
+# Kube Prompt:
+source ~/kube-prompt.sh
+export PROMPT='$(kube_prompt)'
+
 # Source kube-context display 
-source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
-PS1='$(kube_ps1)'$PS1
+#source "/usr/local/opt/kube-ps1/share/kube-ps1.sh"
+#PS1='$(kube_ps1)'$PS1
+
+# Source gcloud command
+source /Users/ninanjohn/google-cloud-sdk/path.zsh.inc
+source /Users/ninanjohn/google-cloud-sdk/completion.zsh.inc
+

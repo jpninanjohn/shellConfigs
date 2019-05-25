@@ -1,4 +1,2 @@
-.vagrant
-*.vdi
-*.box
-
+*~
+.DS_Store

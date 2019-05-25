@@ -1,16 +1,15 @@
 [user]
+	name = Ninan John
 	email = jninan@thoughtworks.com
-	name = Leo Orion
 [core]
-	excludesfile = /Users/ninjohn/.gitignore_global
+	excludesfile = /Users/ninanjohn/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
 [mergetool "sourcetree"]
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+[init]
+	templatedir = /Users/ninanjohn/.git-template
+[commit]
+	template = /Users/ninanjohn/.stCommitMsg
