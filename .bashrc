@@ -29,18 +29,17 @@ export PATH="$PATH:$HOME/.lein"
 # Flutter path
 export PATH=$HOME/flutter/bin:$PATH
 # Go Path
-export PATH=$PATH:/usr/local/Cellar/go/1.12.4/bin
-#export PATH=$PATH:/Users/ninanjohn/go/bin
+export PATH=$PATH:/usr/local/Cellar/go/1.12.5/bin
+export PATH=$PATH:/Users/ninanjohn/go/bin
 export GOPATH=$HOME/go
 
-# Source fzf
-[ -z "$ZSH_NAME" ] && [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
-
+# Cargo Path
 export PATH="$HOME/.cargo/bin:$PATH"
 # >>> talisman >>>
 # Below environment variables should not be modified unless you know what you are doing
 export TALISMAN_HOME=/Users/ninanjohn/.talisman/bin
 alias talisman=$TALISMAN_HOME/talisman_darwin_amd64
 # <<< talisman <<<
+
