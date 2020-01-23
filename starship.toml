@@ -41,7 +41,7 @@ prompt_order=[
 disabled = false
 
 [kubernetes]
-symbol = "⛵ "
+symbol = "⛵ stevedoreCtx:$(stevedore config show-context 2>&1 | rg kubernetesContext | awk '{ print $2 }') | ktx:"
 style = "dim green"
 disabled = false
 
