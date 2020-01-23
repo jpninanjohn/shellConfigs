@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# eval "$(starship init sh)"
+
 kube_prompt_colorize () {
 
   if [[ -n "${ZSH_VERSION-}" ]]; then
@@ -36,14 +38,15 @@ kube_prompt () {
   fi
 
   K8S_PROMPT="$K8S_PROMPT_PREFIX${reset_color}"
-  K8S_PROMPT+="${blue}$K8S_PROMPT_LABEL"
-  K8S_PROMPT+="${reset_color}$K8S_PROMPT_SEPERATOR"
+  K8S_PROMPT+="${blue}stevedoreCtx:"
   K8S_PROMPT+="${yellow}$STEVEDORE_CONTEXT${reset_color}"
   K8S_PROMPT+="${reset_color}$K8S_PROMPT_SEPERATOR"
+  K8S_PROMPT+="${blue}${K8S_PROMPT_LABEL}Ctx:"
   K8S_PROMPT+="${yellow}$K8S_PROMPT_CLUSTER${reset_color}"
- # K8S_PROMPT+="$K8S_PROMPT_DIVIDER"
+  K8S_PROMPT+="${reset_color}$K8S_PROMPT_SEPERATOR"
+  K8S_PROMPT+="$K8S_PROMPT_DIVIDER"
   if [ ! -z $K8S_PROMPT_NAMESPACE ]; then
-    K8S_PROMPT+=":${cyan}$K8S_PROMPT_NAMESPACE${reset_color}"
+    K8S_PROMPT+="${cyan}ns:$K8S_PROMPT_NAMESPACE${reset_color}"
   fi
   
   K8S_PROMPT+="$K8S_PROMPT_SUFFIX"
