@@ -1,0 +1,57 @@
+skipDirectories:
+  - ignore
+cloneRepos:
+  - remoteURL: git@gitlab.com:the-eye/everyday_sound.git
+    localPath: delium/retail/everyday_sound
+  - remoteURL: git@gitlab.com:the-eye/busy_bee.git
+    localPath: delium/retail/busy_bee
+  - remoteURL: git@gitlab.com:cash-replenishment/brown-recluse.git
+    localPath: delium/cash/brown_recluse
+  - remoteURL: git@gitlab.com:cash-replenishment/tarantula.git
+    localPath: delium/cash/tarantula
+  - remoteURL: git@gitlab.com:delium-internals/seer.git
+    localPath: delium/internals/seer
+  - remoteURL: git@gitlab.com:delium-internals/sage.git
+    localPath: delium/internals/sage
+  - remoteURL: git@gitlab.com:delium-internals/eagle.git
+    localPath: delium/internals/eagle
+  - remoteURL: git@gitlab.com:the-eye/devbox.git
+    localPath: delium/common/provisioning/devbox
+  - remoteURL: git@gitlab.com:cash-replenishment/silk_smith.git
+    localPath: delium/cash/silk_smith
+  - remoteURL: git@gitlab.com:the-eye/honeymaker.git
+    localPath: delium/retail/honeymaker
+  - remoteURL: git@gitlab.com:cash-replenishment/black_widow.git
+    localPath: delium/cash/black_widow
+  - remoteURL: git@gitlab.com:the-eye/bourbon.git
+    localPath: delium/retail/bourbon
+  - remoteURL: git@gitlab.com:the-eye/proboscis.git
+    localPath: delium/common/proboscis
+  - remoteURL: git@gitlab.com:the-eye/beeswax.git
+    localPath: delium/common/provisioning/beeswax
+  - remoteURL: git@gitlab.com:cash-replenishment/araneae.git
+    localPath: delium/cash/araneae
+  - remoteURL: git@gitlab.com:the-eye/vision.git
+    localPath: delium/common/monitoring/vision
+  - remoteURL: git@gitlab.com:the-eye/honeyfactory.git
+    localPath: delium/retail/honeyfactory
+  - remoteURL: git@gitlab.com:the-eye/instant_honey.git
+    localPath: delium/retail/instant_honey
+  - remoteURL: git@gitlab.com:the-eye/pusher.git
+    localPath: delium/common/pusher
+  - remoteURL: git@gitlab.com:the-eye/honeywine.git
+    localPath: delium/retail/honeywine
+  - remoteURL: git@gitlab.com:the-eye/ci.git
+    localPath: delium/common/ci
+  - remoteURL: git@gitlab.com:the-eye/honeybuzz.git
+    localPath: delium/retail/honeybuzz
+  - remoteURL: git@gitlab.com:the-eye/key-keeper.git
+    localPath: delium/common/key-keeper
+  - remoteURL: git@gitlab.com:delium-bootcamp/mafia.git
+    localPath: delium/bootcamp/mafia
+  - remoteURL: git@gitlab.com:delium-bootcamp/coding_questions.git
+    localPath: delium/bootcamp/coding_questions
+  - remoteURL: git@gitlab.com:delium1/samaritan.git
+    localPath: delium/openmarkets/samaritan
+  - remoteURL: git@gitlab.com:delium1/paladin.git
+    localPath: delium/openmarkets/paladin
