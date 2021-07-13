@@ -1,0 +1,7 @@
+- yum: name=R state=latest update_cache=yes
+
+- shell: ln -f -s /lib64/libgfortran.so.3 /lib64/libgfortran.so
+
+- shell: if [ `grep 'export R_LIBS' ~/.bashrc | wc -l` -eq 0 ]; then echo 'Setting R_LIBS' && echo 'export R_LIBS={{app_r_libs}}' >> ~/.bashrc; else echo 'R_LIBS already set'; fi
+  become_user: "{{app_user}}"
+  ignore_errors: True

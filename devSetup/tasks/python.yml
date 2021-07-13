@@ -1,0 +1,21 @@
+- name: Setup system python
+  yum: name={{packages}} state=present update_cache=yes
+  vars:
+    packages:
+      - python36
+      - python36-devel
+
+- name: Setup bash profile
+  template: src=./files/bash_profile.j2 dest={{app_home}}/.bash_profile force=yes
+  become_user: "{{app_user}}"
+
+- name: Setup pyenv install script
+  template: src=./files/setup_pyenv.sh.j2 dest={{app_home}}/setup_pyenv.sh force=yes
+  become_user: "{{app_user}}"
+
+- name: Setup pyenv-virtualenv
+  command: bash {{app_home}}/setup_pyenv.sh
+  become_user: "{{app_user}}"
+
+- name: Install psutil
+  shell: pip3 install psutil

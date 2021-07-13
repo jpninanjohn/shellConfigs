@@ -1,0 +1,26 @@
+---
+- name: Download Java
+  command: "curl -o {{java_archive}} -L  {{download_url}} creates={{java_archive}}"
+
+- name: Unpack archive
+  command: "tar -zxf {{java_archive}} -C {{app_home}} creates={{java_name}}"
+
+- name: Fix ownership
+  file: state=directory path={{java_name}} owner=root group=root recurse=yes
+
+- name: Remove existing Symlink for java
+  shell: "rm {{app_home}}/jdk"
+  ignore_errors: True
+
+- name: Symlink for java
+  shell: "ln -s {{java_name}} {{app_home}}/jdk"
+
+- name: Copy real time certs to jdk security folder
+  copy: src=./files/jssecacerts dest={{java_name}}/lib/security/jssecacerts
+
+- name: Remove java alternatives if exists
+  command: 'alternatives --remove "oracle_java" "{{app_home}}/jdk/bin/java"'
+  ignore_errors: True
+
+- name: Make Java available for system
+  command: 'alternatives --install "/usr/bin/java" "oracle_java" "{{app_home}}/jdk/bin/java" 2000'

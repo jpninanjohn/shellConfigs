@@ -1,0 +1,16 @@
+---
+- hosts: devbox
+  become: yes
+  vars_files:
+    - vars/devbox.yml
+
+  tasks:
+    # - include: tasks/common.yml
+    #- include: tasks/python.yml
+    # - include: tasks/ruby.yml
+    - include: tasks/postgres.yml
+    - include: tasks/node.yml
+    - include: tasks/java.yml
+    - include: tasks/r.yml
+    - include: tasks/clickhouse.yml
+    - include: tasks/ide.yml

@@ -1,0 +1,38 @@
+---
+#  Do not istall epel on fedora - https://stackoverflow.com/a/57317248
+# - name: Install repo
+#   yum: name=epel-release state=present update_cache=yes
+
+- name: install Development Tools
+  yum: name="@Development Tools" state=latest
+
+- name: Set timezone
+  timezone:
+    name: "{{ timezone }}"
+
+- name: Install dependencies
+  yum: name={{packages}} state=present update_cache=yes
+  vars:
+    packages:
+      - ca-certificates
+      - curl
+      - wget
+      - parallel
+      - libcurl-devel
+      - libxml2-devel
+      - openssl-devel
+      - pigz
+      - bzip2
+      - htop
+      - chromium
+
+
+- copy: src=files/environment.sh dest=/etc/profile.d/environment.sh mode=0755
+
+- name: Copy Dev sign authorities to system
+  copy: src=./files/minica.pem dest=/etc/pki/ca-trust/source/anchors/minica.pem
+
+- name: Update ca-trust
+  shell: update-ca-trust extract
+
+- file: name={{app_r_libs}} state=directory owner={{app_user}} mode=0755

@@ -1,0 +1,27 @@
+- name: Setup node installer
+  copy: src=./files/setup_nvm.sh dest={{app_home}}/setup_nvm.sh force=yes
+  become_user: "{{app_user}}"
+
+- name: Run the node installer
+  command: bash {{app_home}}/setup_nvm.sh
+  become_user: "{{app_user}}"
+
+- name: Install node
+  shell: source ~/.bashrc && nvm install 10.16.3
+  become_user: "{{app_user}}"
+
+- shell: source ~/.bashrc && which nf
+  register: foreman_present
+  ignore_errors: True
+  become_user: "{{app_user}}"
+
+- shell: source ~/.bashrc && npm install -g foreman
+  when: foreman_present is failed
+  become_user: "{{app_user}}"
+
+- shell: curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+
+- shell: rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+
+- name: Install yarn
+  yum: name=yarn state=present update_cache=yes

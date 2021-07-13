@@ -1,0 +1,67 @@
+---
+- name: Install Postgres SQL repo
+  yum:
+    name: https://download.postgresql.org/pub/repos/yum/reporpms/F-34-x86_64/pgdg-fedora-repo-latest.noarch.rpm
+    state: present 
+    disable_gpg_check: yes
+
+- name: Clean cache
+  command: yum clean all
+
+- name: Install Postgres
+  yum: name={{packages}} state=present
+  vars:
+    packages:
+    - postgresql12
+    - postgresql12-server
+    - postgresql12-libs
+    - postgresql12-contrib
+    - postgis25_12
+    - postgis25_12-utils
+    - postgis25_12-client
+    - libgeotiff16
+    - postgresql12-devel
+
+
+- name: "Is database initialized"
+  shell: ls -l /var/lib/pgsql/12/data | wc -l
+  register: initComplete
+
+- name: Initing the db init
+  when: "initComplete.stdout == '1'"
+  shell: /usr/pgsql-12/bin/postgresql-12-setup initdb
+
+- name: Starting the database
+  service: name=postgresql-12 state=restarted enabled=yes
+
+- name: Postgres trust all authentication
+  copy: src=./files/pg_hba.conf dest=/var/lib/pgsql/12/data/pg_hba.conf force=yes
+  register: pg_changed1
+
+- name: Postgres listen on all interfaces
+  lineinfile: >
+    line="listen_addresses = '*'" regexp="listen_addresses"
+    dest=/var/lib/pgsql/12/data/postgresql.conf state=present
+  register: pg_changed2
+
+- name: Setup slow query logging
+  lineinfile: >
+    line="log_min_duration_statement = 1500" regexp="log_min_duration_statement"
+    dest=/var/lib/pgsql/12/data/postgresql.conf state=present
+  register: pg_changed2
+
+- name: Change work mem for crazy sorts
+  lineinfile: >
+    line="work_mem = 128MB" regexp="work_mem"
+    dest=/var/lib/pgsql/12/data/postgresql.conf state=present
+  register: pg_changed4
+
+- name: Change postgres timezone
+  lineinfile: >
+    line="timezone = {{timezone}}" regexp="^timezone"
+    dest=/var/lib/pgsql/12/data/postgresql.conf state=present
+  register: pg_changed3
+
+- name: Restart postgresql
+  service: name=postgresql-12 state=restarted
+  when: (pg_changed1.changed) or (pg_changed2.changed) or (pg_changed3.changed) or (pg_changed4.changed)

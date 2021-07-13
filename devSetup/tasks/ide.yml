@@ -1,0 +1,21 @@
+- name: Import keys
+  shell: rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
+- name: Enable the vscode repo
+  copy: src=./files/vscode.repo dest=/etc/yum.repos.d/vscode.repo
+
+- name: Install vscode
+  dnf:
+    name: code
+    state: present
+
+- name: Import sublime text keys
+  shell: rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
+
+- name: Install sublime repo
+  shell: dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+
+- name: Install sublime text 3
+  dnf:
+    name: sublime-text
+    state: present

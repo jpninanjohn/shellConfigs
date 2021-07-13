@@ -1,0 +1,1 @@
+ansible-playbook -v -i "inventory" -u root "devbox.yml"

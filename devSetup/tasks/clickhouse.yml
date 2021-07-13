@@ -1,0 +1,22 @@
+---
+- yum: name=yum-utils state=present
+
+- name: Setup the yandex repository keys
+  command: 'rpm --import https://repo.yandex.ru/clickhouse/CLICKHOUSE-KEY.GPG'
+  ignore_errors: True
+
+- name: Setup the yandex repo
+  yum_repository:
+    name: yandex
+    description: Yandex Repo for Clickhouse
+    baseurl: https://repo.yandex.ru/clickhouse/rpm/stable/x86_64
+
+- name: Install clickhouse server and client
+  yum:
+    name:
+      - clickhouse-server
+      - clickhouse-client
+    state: present
+
+- name: Restart clickhouse and add to startup
+  service: name=clickhouse-server state=restarted enabled=yes

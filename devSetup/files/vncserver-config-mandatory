@@ -1,0 +1,16 @@
+## Mandatory settings for VNC servers started by the vncserver service
+#
+# Any settings given here will override the builtin defaults and
+# settings specified in ~/.vnc/config or vnc-config-defaults.
+#
+# See the following manpages for more details: vncserver(1) Xvnc(1)
+#
+# Several common settings are shown below. Uncomment and modify to your
+# liking.
+
+securitytypes=vncauth,tlsvnc
+desktop=gnome
+session=gnome
+geometry=1920x1280
+interface=0.0.0.0
+alwaysshared=0

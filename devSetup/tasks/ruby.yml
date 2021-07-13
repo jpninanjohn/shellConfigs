@@ -1,0 +1,21 @@
+- name: Setup system python
+  yum: name={{packages}} state=present update_cache=yes
+  vars:
+    packages:
+      - ruby
+
+- name: Setup rvm installer
+  copy: src=./files/setup_rvm.sh dest={{app_home}}/setup_rvm.sh force=yes
+  become_user: "{{app_user}}"
+
+- name: Install dependencies for ruby
+  yum: name={{packages}} state=present update_cache=yes
+  vars:
+    packages:
+      - libffi-devel
+      - readline-devel
+      - sqlite-devel
+    
+- name: Run the rvm installer
+  command: bash {{app_home}}/setup_rvm.sh
+  become_user: "{{app_user}}"

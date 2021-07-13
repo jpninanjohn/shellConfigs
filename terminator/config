@@ -1,0 +1,42 @@
+[global_config]
+  title_transmit_bg_color = "#9141ac"
+  line_height = 1.5
+[keybindings]
+  cycle_next = <Primary>Right
+  cycle_prev = <Primary>Left
+  split_horiz = <Shift><Alt>d
+  split_vert = <Alt>d
+  close_term = <Primary>Delete
+  search = <Primary>f
+  toggle_zoom = <Alt>Return
+  next_tab = <Primary>Tab
+  prev_tab = <Primary><Shift>Tab
+  switch_to_tab_1 = <Primary>1
+  switch_to_tab_2 = <Primary>2
+  switch_to_tab_3 = <Primary>3
+  switch_to_tab_4 = <Primary>4
+  switch_to_tab_5 = <Primary>5
+  switch_to_tab_6 = <Primary>6
+  switch_to_tab_7 = <Primary>7
+  full_screen = <Super>Up
+  broadcast_group = <Primary><Alt>Return
+  broadcast_all = <Primary><Shift>Return
+[profiles]
+  [[default]]
+    background_darkness = 0.77
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Monospace 14
+    show_titlebar = False
+    scrollback_infinite = True
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+[plugins]
